@@ -77,3 +77,21 @@ function sayHello(): void {
 }
 console.log(sayHello());
 let tmp: undefined;
+
+// 関数の型注釈
+const anotherAdd: (n1: number, n2: number) => number = function (num1: number, num2: number): number {
+    return num1 + num2;
+};
+
+// アロー関数
+const dobuleNumber = (num: number): number => num * 2;
+const dobuleNumber2: (num: number) => number = num => num * 2;
+
+// コールバック関数
+function doubleAndHandle(num: number, cb: (num: number) => number): void {
+    const dobuleNum = cb(num * 2);
+    console.log(dobuleNum);
+}
+doubleAndHandle(21, dobuleNum => {
+    return dobuleNum
+});
