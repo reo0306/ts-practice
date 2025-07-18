@@ -1,18 +1,19 @@
-var hasValue = false;
-var count = 10;
-var float = 2.14;
-var negative = -0.12;
-var single = 'hello';
-var double = "hello";
-var back = "hello";
-var person = {
+"use strict";
+let hasValue = false;
+let count = 10;
+let float = 2.14;
+let negative = -0.12;
+let single = 'hello';
+let double = "hello";
+let back = `hello`;
+const person = {
     name: 'Jack',
     age: 21,
 };
 // UNION型
-var fruits = ['Apple', 'Banana', 'Grape', 1];
+const fruits = ['Apple', 'Banana', 'Grape', 1];
 // タプル型
-var book = ['business', 1500, false];
+const book = ['business', 1500, false];
 //book.push(21);
 //console.log(book[3]); // 型違いでエラーになる
 var CoffeeSize;
@@ -22,31 +23,31 @@ var CoffeeSize;
     CoffeeSize[CoffeeSize["GRANDE"] = 2] = "GRANDE";
     CoffeeSize[CoffeeSize["VENTI"] = 3] = "VENTI";
 })(CoffeeSize || (CoffeeSize = {}));
-var coffee = {
+const coffee = {
     hot: true,
     size: CoffeeSize.TALL,
 };
 coffee.size = CoffeeSize.SHORT;
 console.log(CoffeeSize.SHORT);
-var anything = true;
+let anything = true;
 anything = 'hello';
 anything = ['hello', 33, true];
 anything = {};
 anything.aaaa = 'aaaa';
-var banana = 'banana';
+let banana = 'banana';
 // anyは型の安全性は無視
 banana = anything;
 // ユニオン型
-var unionType = 10;
+let unionType = 10;
 // 配列のユニオン型
-var unionTypes = [1, 'hello'];
+let unionTypes = [1, 'hello'];
 unionType = 'hello';
 unionType.toUpperCase();
 // リテラル型（決まった値のみ）。constを使うとリテラル型になる
-var apple = 'apple';
+const apple = 'apple';
 // UNION型とリテラル型の組みあせ
-var clothSize = 'large';
-var cloth = {
+let clothSize = 'large';
+const cloth = {
     color: 'white',
     size: clothSize,
 };
@@ -54,6 +55,39 @@ function add2(num1, num2) {
     return num1 + num2;
 }
 function sayHello() {
-    console.log('hello');
+    //console.log('hello');
 }
 console.log(sayHello());
+let tmp;
+// 関数の型注釈
+const anotherAdd = function (num1, num2) {
+    return num1 + num2;
+};
+// アロー関数
+const dobuleNumber = (num) => num * 2;
+const dobuleNumber2 = num => num * 2;
+// コールバック関数
+function doubleAndHandle(num, cb) {
+    const dobuleNum = cb(num * 2);
+    //console.log(dobuleNum);
+}
+doubleAndHandle(21, dobuleNum => {
+    return dobuleNum;
+});
+let unknowInput;
+let anyInput;
+let text;
+unknowInput = 'hello';
+unknowInput = 21;
+unknowInput = true;
+text = anyInput;
+// unknow型はtypeofで型を保証する必要がある
+if (typeof unknowInput === 'string') {
+    text = unknowInput;
+}
+// satisfies演算子 -> データの型チェック
+// never型
+function error(message) {
+    throw new Error(message);
+}
+console.log(error('error'));

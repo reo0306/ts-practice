@@ -73,7 +73,7 @@ function add2(num1: number, num2: number): number {
 }
 
 function sayHello(): void {
-    console.log('hello');
+    //console.log('hello');
 }
 console.log(sayHello());
 let tmp: undefined;
@@ -90,8 +90,27 @@ const dobuleNumber2: (num: number) => number = num => num * 2;
 // コールバック関数
 function doubleAndHandle(num: number, cb: (num: number) => number): void {
     const dobuleNum = cb(num * 2);
-    console.log(dobuleNum);
+    //console.log(dobuleNum);
 }
 doubleAndHandle(21, dobuleNum => {
     return dobuleNum
 });
+
+let unknowInput: unknown;
+let anyInput: any;
+let text:string;
+unknowInput = 'hello';
+unknowInput = 21;
+unknowInput = true;
+text = anyInput;
+// unknow型はtypeofで型を保証する必要がある
+if (typeof unknowInput === 'string') {
+    text = unknowInput;
+}
+// satisfies演算子 -> データの型チェック
+
+// never型
+function error(message: string): never {
+    throw new Error(message);
+}
+console.log(error('error'));
