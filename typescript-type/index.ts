@@ -90,7 +90,7 @@ const dobuleNumber2: (num: number) => number = num => num * 2;
 // コールバック関数
 function doubleAndHandle(num: number, cb: (num: number) => number): void {
     const dobuleNum = cb(num * 2);
-    //console.log(dobuleNum);
+    console.log(dobuleNum);
 }
 doubleAndHandle(21, dobuleNum => {
     return dobuleNum

@@ -1,5 +1,5 @@
 function echo(message: string): string | null {
-    let hello = 'hello';
+    //let hello = 'hello';
     return message;
 }
 let implicitAny;
