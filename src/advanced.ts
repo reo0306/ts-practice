@@ -21,12 +21,16 @@ type NumberBoolean = number | boolean;
 type StringNumber = string | number;
 type Mix = NumberBoolean & StringNumber;
 
-function toUpperCase(x: string | number) {
+// 関数のオーバーロード（typescriptに正しく型を伝える）
+function toUpperCase(x: string): string;
+function toUpperCase(x: number): number;
+function toUpperCase(x: string | number): string | number {
     if (typeof x === 'string') {
         return x.toUpperCase();
     }
-    return '';
+    return x;
 }
+const upperHello = toUpperCase('hello');
 
 type NomadWorker = Enginner | Blogger;
 function describeProfile(nomadWorker: NomadWorker) {
@@ -71,5 +75,55 @@ havePet(new Bird());
 
 // 型アサーション（型を強制指定）
 //const input = <HTMLInputElement>document.getElementById('input');
-const input = document.getElementById('input') as HTMLInputElement;
-input.value = 'initial input value';
+//const input = document.getElementById('input') as HTMLInputElement;
+//input.value = 'initial input value';
+(document.getElementById('input') as HTMLInputElement).value = 'initial input value';
+
+// No NULLアサーション
+//const input = document.getElementById('input')!;
+//input.value = 'initial input value';
+//(document.getElementById('input') as HTMLInputElement).value = 'initial input value';
+
+// indexシグネチャー
+interface Designer {
+    name: string,
+    [index: string]: string, // indexシグネチャー（オプション?はできない、readonlyはできる）
+}
+const designer: Designer = {
+    name: 'Quill',
+}
+
+let foo = 'name';
+designer[foo].toUpperCase()
+
+interface DownloadData {
+    id: number,
+    user?: {
+        name?: {
+            first: string,
+            last: string,
+        }
+    }
+}
+
+// optionalチェーニング
+const downloadedData: DownloadData = {
+    id: 1
+}
+console.log(downloadedData.user?.name?.first);
+
+// ナレッシュコアーリング（phpのUFO演算子）null or undefinedなら
+const userData = downloadedData.user ?? 'no-user'
+
+// LookUp型（indexアクセス型）
+type id = DownloadData["id"];
+
+// 型の互換性（数字とENUMはお互い、いれることはできる）
+enum Color {
+    RED,
+    BLUE,
+}
+let target = function(a: string, b: string) {};
+let source = function(a: string) {};
+target = source;
+target('h1', 'b');
