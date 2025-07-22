@@ -68,3 +68,8 @@ function havePet(pet: Pet) {
     }
 }
 havePet(new Bird());
+
+// 型アサーション（型を強制指定）
+//const input = <HTMLInputElement>document.getElementById('input');
+const input = document.getElementById('input') as HTMLInputElement;
+input.value = 'initial input value';
