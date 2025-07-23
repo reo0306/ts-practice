@@ -30,7 +30,20 @@ function toUpperCase(x: string | number): string | number {
     }
     return x;
 }
-const upperHello = toUpperCase('hello');
+interface TmpFunc {
+    (x: string): number,
+    (x: number): number,
+}
+const upperHello: TmpFunc = function (x: string | number) { return 0; };
+interface FuncA {
+    (a: number, b: string): number,
+    (a: string, b: number): number,
+}
+interface FuncB {
+    (a: string): number,
+}
+let intersectionFunc: FuncA & FuncB;
+intersectionFunc = function (a: number | string, b?: number | string) { return 0; };
 
 type NomadWorker = Enginner | Blogger;
 function describeProfile(nomadWorker: NomadWorker) {
