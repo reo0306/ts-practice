@@ -156,7 +156,34 @@ let source = new AvancedCar();
 target = source;
 
 // restパラメータ / label tpul
-function advencedFn(...args: [age: number, name: string, hasPets?: boolean, ...scores: number[]]) {
+function advencedFn(...args: readonly [age: number, name: string, hasPets?: boolean, ...scores: number[]]) {
 }
 //advencedFn(0, 'a', true, 3, 3, 3, 3);
 advencedFn(26, 'aaa', true, 3, 3, 3);
+
+function advencedFn2(...args: readonly number[]) {
+}
+advencedFn2(1,2);
+
+// constアサーション
+let milk = 'milk' as const;
+let drink = milk;
+const array = [10, 20] as const;
+const peter = {
+    name: 'Peter',
+    age: 38,
+} as const;
+
+// 型の中にtypeofを使う。
+type PeterType = typeof peter;
+
+// シンボル型（他のデータと被らないデータ）
+const symbol1: unique symbol = Symbol(); // 例）afjkafjalfklafjlajfal
+const symbol2 = Symbol(); // 例）djfdddfdkfjasfkjallld
+const obj = {
+    [symbol1]: 'hello',
+}
+function myFnc(mySymbol: typeof symbol1) {}
+myFnc(symbol1);
+//myFnc(symbol2);
+console.log(symbol1,symbol2);
