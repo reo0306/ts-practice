@@ -123,7 +123,14 @@ enum Color {
     RED,
     BLUE,
 }
-let target = function(a: string, b: string) {};
-let source = function(a: string) {};
+class AvancedPerson {
+    name: string = 'Peter'
+    age: number = 35;
+}
+class AvancedCar {
+    name: string = 'Prius'
+    age: number = 5;
+}
+let target = new AvancedPerson();
+let source = new AvancedCar();
 target = source;
-target('h1', 'b');
