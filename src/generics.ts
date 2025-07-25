@@ -70,4 +70,25 @@ interface ResponseData<T extends { message: string} = any> {
     data: T,
     status: number,
 }
-let tmp2: ResponseData;
+let GenericsTmp2: ResponseData;
+
+interface Vagetables {
+    readonly tomato: string,
+    pumpkin: string,
+}
+let GenericsTmp3: keyof Vagetables;
+
+// マップドタイプ
+// 「-」で打ち消す
+type MappedTypes = {
+    -readonly [P in keyof Vagetables]-?: string
+}
+
+// コンディショナルタイプ
+// tomato型がstringに代入できるならnumber そうじゃないならboolean
+//type ConditionalTypes = 'tomato' extends string ? number: boolean;
+type ConditionalTypes = string extends 'tomato' ? number: boolean;
+type ConditionalTypesInfer = { tomato: string } extends { tomato: infer R } ? R : boolean;
+type DistributiveConditionalTypes<T> = T extends 'tomato' ? number : boolean;
+let GenericsTmp4: DistributiveConditionalTypes<'tomato' | 'pumpkin'>
+let GenericsTmp5: NonNullable<string | null>;
