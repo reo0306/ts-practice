@@ -92,3 +92,8 @@ type ConditionalTypesInfer = { tomato: string } extends { tomato: infer R } ? R 
 type DistributiveConditionalTypes<T> = T extends 'tomato' ? number : boolean;
 let GenericsTmp4: DistributiveConditionalTypes<'tomato' | 'pumpkin'>
 let GenericsTmp5: NonNullable<string | null>;
+
+// テンプレートリテラル型
+type FirstName = 'John' | 'Paul' | 'Geoge';
+type LastName = 'Lennon' | 'McCartney';
+type UserName = `${FirstName}-${LastName}`;
