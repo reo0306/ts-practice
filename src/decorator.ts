@@ -43,6 +43,27 @@ function MethodLogging(target: any, propertyKey: string, descriptor: PropertyDes
     console.log(propertyKey);
     console.log(descriptor);
 }
+function enumerable(isEnumerable: boolean) {
+    return function(_target: any, _propertyKey: string, _descriptor: PropertyDescriptor) {
+        return {
+            enumerable: isEnumerable,
+        }
+    }
+}
+
+function AccessorLogging(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log('AccessorLogging');
+    console.log(target);
+    console.log(propertyKey);
+    console.log(descriptor);
+}
+
+function ParameterLogging(target: any, propertyKey: string, parameterIndex: number) {
+    console.log('ParamterLogging');
+    console.log(target);
+    console.log(propertyKey);
+    console.log(parameterIndex);
+}
 
 // 下から上にデコレーターは実行される。デコレーターファクトリーは上から下
 @Logging('Logging User')
@@ -50,13 +71,22 @@ function MethodLogging(target: any, propertyKey: string, descriptor: PropertyDes
 class User {
     @PropertyLogging
     name = 'Quill';
-    constructor(public age: number) {
+    constructor(private _age: number) {
         console.log('User was created!');
     }
 
+    @AccessorLogging
+    get age() {
+        return this._age;
+    }
+    set age(value) {
+        this._age = value;
+    }
+
+    @enumerable(false)
     @MethodLogging
-    gretting() {
-        console.log('hello');
+    gretting(@ParameterLogging message: string) {
+        console.log(message);
     }
 }
 
