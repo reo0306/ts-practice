@@ -38,7 +38,7 @@ const tmpDatabase: TmpDatabase<number> = {
     data: [32]
 }
 
-type TmpDatabase2<T> {
+type TmpDatabase2<T> = {
     id: number,
     data: T[],
 }
