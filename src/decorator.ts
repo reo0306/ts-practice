@@ -28,13 +28,35 @@ function Component(template: string, selector: string) {
     }
 }
 
+// staticじゃない場合、targetはプロトタイプになる
+// returnはできない
+function PropertyLogging(target: any, propertyKey: string) {
+    console.log('propertyLogging');
+    console.log(target);
+    console.log(propertyKey);
+}
+
+// staticじゃない場合、targetはプロトタイプになる
+function MethodLogging(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    console.log('MethodLogging');
+    console.log(target);
+    console.log(propertyKey);
+    console.log(descriptor);
+}
+
 // 下から上にデコレーターは実行される。デコレーターファクトリーは上から下
 @Logging('Logging User')
 @Component('<h1>{{ name }}</h1>', '#app')
 class User {
+    @PropertyLogging
     name = 'Quill';
     constructor(public age: number) {
         console.log('User was created!');
+    }
+
+    @MethodLogging
+    gretting() {
+        console.log('hello');
     }
 }
 
