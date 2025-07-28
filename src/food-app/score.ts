@@ -1,4 +1,4 @@
-import { Scoreable } from "./interface";
+import { Scoreable } from "./interface.js";
 import { Foods } from "./foods.js";
 
 export class Score implements Scoreable {

@@ -1,4 +1,4 @@
-import { Foodsable } from "./interface";
+import { Foodsable } from "./interface.js";
 import { Food } from "./food.js";
 
 export class Foods implements Foodsable {
