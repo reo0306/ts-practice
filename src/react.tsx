@@ -1,2 +1,3 @@
 import ReactDOM from 'react-dom/client';
-ReactDOM.createRoot(document.getElementById('app') as HTMLElement);
+const root = ReactDOM.createRoot(document.getElementById('app') as HTMLElement);
+root.render(<h1>Hello</h1>);
