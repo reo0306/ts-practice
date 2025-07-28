@@ -3,7 +3,7 @@ const { Extension } = require('typescript');
 
 module.exports = {
     mode: 'development',
-    entry: './src/food-app/main.ts',
+    entry: './src/library.ts',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
