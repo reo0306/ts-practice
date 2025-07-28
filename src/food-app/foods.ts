@@ -1,5 +1,5 @@
-import { Foodsable } from "./interface.js";
-import { Food } from "./food.js";
+import { Foodsable } from "./interface";
+import { Food } from "./food";
 
 export class Foods implements Foodsable {
     private static instance: Foods;
